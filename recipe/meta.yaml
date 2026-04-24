@@ -7,20 +7,20 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/piano_fingering/piano_fingering-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/piano_fingering/piano_fingering-{{ version }}.tar.gz
   sha256: 737011b979f62742109842c654734167051ea402a545de542e03e915b577070f
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 test:
   imports:
     - piano_fingering
@@ -28,6 +28,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 about:
   home: https://github.com/Kanma/piano_fingering
   summary: 'Simple, fast, extensible JSON encoder/decoder for Python'
